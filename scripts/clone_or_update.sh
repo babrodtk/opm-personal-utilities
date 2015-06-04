@@ -3,7 +3,7 @@
 set +e
 script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 source $script_dir/set_environment.sh
-log_file="$script_dir/fetch_`date -Imin`.log"
+log_file="$log_dir/fetch_`date -Imin`.log"
 
 function clone_or_update() {
 	local module=$1

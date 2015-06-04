@@ -3,7 +3,7 @@
 set +e
 script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 source $script_dir/set_environment.sh
-log_file="$script_dir/cmake_`date -Imin`.log"
+log_file="$log_dir/cmake_`date -Imin`.log"
 
 #build directory, and builds using cmake/make
 function run_cmake() {
@@ -19,6 +19,8 @@ function run_cmake() {
 
 		cmake -C ../opm-options.cmake $src_dir
 		echo "Makefile generated" >> $log_file
+		make
+		echo "Make run!" >> $log_file
 	else
 		echo "No CMakeLists.txt found, skipping build";
 	fi

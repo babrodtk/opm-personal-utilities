@@ -3,7 +3,7 @@
 set +e
 script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 source $script_dir/set_environment.sh
-log_file="$script_dir/tests_`date -Imin`.log"
+log_file="$log_dir/tests_`date -Imin`.log"
 
 # Runs tests
 function run_tests() {

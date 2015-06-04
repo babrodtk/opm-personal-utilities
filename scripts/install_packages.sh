@@ -7,7 +7,7 @@ set -e
 set -x
 
 script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-install_check_file="$script_dir/opm_deps_installed.log"
+install_check_file="$log_dir/opm_deps_installed.log"
 if [ -f $install_check_file ]; then
 	echo $install_check_file "exists, skipping install procedure"
 	echo "install_packages.sh run " `date` ", but did nothing" >> $install_check_file

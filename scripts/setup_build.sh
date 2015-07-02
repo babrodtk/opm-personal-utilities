@@ -14,7 +14,9 @@ function setup_build() {
 
 	#Soft-link source directory
 	for module in $modules; do
-		ln -s "$opm_git_dir/$module" "$config_dir/$module"
+		if [ ! -e "$config_dir/$module" ]; then
+			ln -s "$opm_git_dir/$module" "$config_dir/$module"
+		fi
 	done
 	
 	#Copy cmake configuration file
@@ -22,13 +24,19 @@ function setup_build() {
 	echo "SET(CMAKE_BUILD_TYPE \"$config\" CACHE STRING \"Build type\")" >> $config_dir/opm-options.cmake
 
 	#Soft-link make-file
-	ln -s "$script_dir/Makefile" "$config_dir/Makefile"
+	if [ ! -e "$config_dir/Makefile" ]; then
+		ln -s "$script_dir/Makefile" "$config_dir/Makefile"
+	fi
 
 	#Soft-link ert
-	ln -s "$ert_git_dir/install" "$config_dir/ert"
+	if [ ! -e "$config_dir/ert" ]; then
+		ln -s "$ert_git_dir/install" "$config_dir/ert"
+	fi
 
 	#Soft-link script dir
-	ln -s "$script_dir" "$config_dir/scripts"
+	if [ ! -e "$config_dir/scripts" ]; then
+		ln -s "$script_dir" "$config_dir/scripts"
+	fi
 
 	#Run cmake
 	$config_dir/scripts/run_cmake.sh
@@ -36,6 +44,13 @@ function setup_build() {
 }
 
 
+#First build ERT
+$script_dir/build_ert_from_git.sh
+
+#Then clone/update everything
+$script_dir/clone_or_update.sh
+
+#Finally, build in all configurations
 for config in $build_configurations; do
 	setup_build $config
 done

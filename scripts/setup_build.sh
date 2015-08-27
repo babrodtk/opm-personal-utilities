@@ -19,9 +19,12 @@ function setup_build() {
 		fi
 	done
 	
-	#Copy cmake configuration file
-	cp "$script_dir/opm-options.cmake" "$config_dir"
-	echo "SET(CMAKE_BUILD_TYPE \"$config\" CACHE STRING \"Build type\")" >> $config_dir/opm-options.cmake
+	#Copy cmake configuration files
+	if [ ! -e "$config_dir/opm-options.cmake" ]; then
+		ln -s "$script_dir/opm-options-common.cmake" "$config_dir/opm-options-common.cmake"
+		ln -s "$script_dir/opm-options-$config.cmake" "$config_dir/opm-options-build-specific.cmake"
+		cat "$config_dir/opm-options-common.cmake" "$config_dir/opm-options-build-specific.cmake" > "$config_dir/opm-options.cmake"
+	fi
 
 	#Soft-link make-file
 	if [ ! -e "$config_dir/Makefile" ]; then

@@ -31,7 +31,7 @@ log_dir="$base_dir/logs"
 mkdir -p $log_dir
 
 #Set number of parallel jobs to use with make
-export MAKEFLAGS="-j 3"
+export MAKEFLAGS="-j 9"
 
 #Set which modules to compile
 modules="\
@@ -52,4 +52,5 @@ git_origin_base="git@github.com:babrodtk"
 
 build_configurations="\
 Release \
-Debug"
+Debug \
+Profile"

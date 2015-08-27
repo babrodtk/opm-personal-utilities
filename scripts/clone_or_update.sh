@@ -13,18 +13,22 @@ function clone_or_update() {
 
 	echo "===== $module =====" >> $log_file
 
-	#Update repository if it exists
+	#If repository exists, go there
 	if [ -d $src_dir ]; then
 		echo "** Pulling origin" >> $log_file
 		cd $src_dir
-		git pull --rebase origin 
-	#Else clone and add upstream
+	#Else clone and add upstream remote
 	else
 		echo "** Cloning origin, then pulling upstream" >> $log_file
 		git clone --recursive $origin_url $src_dir
 		cd $src_dir
 		git remote add upstream $upstream_url
 	fi
+
+	#Update with upstream
+	git checkout master
+	git remote update
+	git pull upstream master
 
 	echo "** Git pull complete" >> $log_file
 	git status 2>&1 | tee -a $log_file

@@ -35,17 +35,17 @@ export MAKEFLAGS="-j 9"
 
 #Set which modules to compile
 modules="\
-opm-cmake \
+opm-common \
 opm-parser \
-opm-core \
-dune-cornerpoint \
-opm-autodiff \
-opm-polymer \
 opm-material \
-opm-porsol \
+opm-core \
+opm-grid \
+opm-output \
+opm-simulators \
 opm-upscaling \
-opm-benchmarks \
 ResInsight"
+#opm-porsol \
+#opm-benchmarks \
 
 git_upstream_base="git@github.com:OPM"
 git_origin_base="git@github.com:babrodtk"

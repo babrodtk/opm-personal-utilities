@@ -12,8 +12,8 @@ base_dir=`dirname $script_dir`
 
 #Set GCC version, and set colors to use
 export GCC_COLORS=1
-export CC=/usr/bin/gcc-4.9
-export CXX=/usr/bin/g++-4.9
+export CC=/usr/bin/gcc-5
+export CXX=/usr/bin/g++-5
 
 #Set the default opm directories to use
 opm_git_dir="$base_dir"
@@ -38,14 +38,12 @@ modules="\
 opm-common \
 opm-parser \
 opm-material \
+opm-output \
 opm-core \
 opm-grid \
-opm-output \
 opm-simulators \
 opm-upscaling \
 ResInsight"
-#opm-porsol \
-#opm-benchmarks \
 
 git_upstream_base="git@github.com:OPM"
 git_origin_base="git@github.com:babrodtk"

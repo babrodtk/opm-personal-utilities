@@ -1,13 +1,13 @@
-all: \
-opm-parser \
-opm-core \
-dune-cornerpoint \
-opm-autodiff \
-opm-polymer \
-opm-material \
-opm-upscaling \
-opm-benchmarks \
-ResInsight 
+all: FORCE
+	$(MAKE) -C opm-common-build 
+	$(MAKE) -C opm-parser-build 
+	$(MAKE) -C opm-material-build 
+	$(MAKE) -C opm-output-build 
+	$(MAKE) -C opm-core-build 
+	$(MAKE) -C opm-grid-build 
+	$(MAKE) -C opm-simulators-build 
+	$(MAKE) -C opm-upscaling-build 
+	$(MAKE) -C ResInsight-build 
 
 help:
 	echo "Usage: make <target>"
@@ -17,16 +17,16 @@ help:
 	echo " tests   - Run tests"
 	echo " all     - Compile all modules"
 
-clean:
-	rm -rf opm-parser-build \
-		opm-core-build \
-		dune-cornerpoint-build \
-		opm-autodiff-build \
-		opm-polymer-build \
-		opm-material-build \
-		opm-upscaling-build \
-		opm-benchmarks-build \
-		ResInsight-build 
+clean: FORCE
+	$(MAKE) -C opm-common-build clean
+	$(MAKE) -C opm-parser-build clean
+	$(MAKE) -C opm-material-build clean
+	$(MAKE) -C opm-output-build clean
+	$(MAKE) -C opm-core-build clean
+	$(MAKE) -C opm-grid-build clean
+	$(MAKE) -C opm-simulators-build clean
+	$(MAKE) -C opm-upscaling-build clean
+	$(MAKE) -C ResInsight-build clean
 
 prereqs: 
 	scripts/install_packages.sh
@@ -43,35 +43,4 @@ tests:
 	scripts/run_tests.sh
 
 FORCE:
-
-opm-parser: FORCE
-	$(MAKE) -C opm-parser-build
-
-opm-core: FORCE
-	$(MAKE) -C opm-core-build
-
-dune-cornerpoint: FORCE
-	$(MAKE) -C dune-cornerpoint-build
-
-opm-autodiff: FORCE
-	$(MAKE) -C opm-autodiff-build
-
-opm-polymer: FORCE
-	$(MAKE) -C opm-polymer-build
-
-opm-material: FORCE
-	$(MAKE) -C opm-material-build
-
-opm-porsol: FORCE
-	$(MAKE) -C opm-porsol-build
-
-opm-upscaling: FORCE
-	$(MAKE) -C opm-upscaling-build
-
-opm-benchmarks: FORCE
-	$(MAKE) -C opm-benchmarks-build
-
-ResInsight: FORCE
-	$(MAKE) -C ResInsight-build
-
 

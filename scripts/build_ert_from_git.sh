@@ -20,6 +20,6 @@ function clone_or_update() {
 clone_or_update "https://github.com/Ensembles/ert.git" "$ert_git_dir/src"
 mkdir -p "$ert_git_dir/build"
 cd "$ert_git_dir/build"
-cmake -DCMAKE_INSTALL_PREFIX="$ert_git_dir/install" "$ert_git_dir/src/devel"
+cmake -DCMAKE_INSTALL_PREFIX="$ert_git_dir/install" -DBUILD_APPLICATIONS="ON" -DBUILD_ECL_SUMMARY="ON" -DBUILD_ERT="ON" -DBUILD_PYTHON="ON" -DBUILD_SHARED_LIBS="ON" "$ert_git_dir/src"
 make
 make install

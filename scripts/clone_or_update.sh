@@ -23,6 +23,7 @@ function clone_or_update() {
 		git clone --recursive $origin_url $src_dir
 		cd $src_dir
 		git remote add upstream $upstream_url
+		git remote set-url --push upstream no-pushing-allowed
 	fi
 
 	#Update with upstream

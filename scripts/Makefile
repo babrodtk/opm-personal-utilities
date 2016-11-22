@@ -5,6 +5,7 @@ all: FORCE
 	$(MAKE) -C opm-output-build 
 	$(MAKE) -C opm-core-build 
 	$(MAKE) -C opm-grid-build 
+	$(MAKE) -C ewoms-build 
 	$(MAKE) -C opm-simulators-build 
 	$(MAKE) -C opm-upscaling-build 
 	$(MAKE) -C ResInsight-build 
@@ -24,6 +25,7 @@ clean: FORCE
 	$(MAKE) -C opm-output-build clean
 	$(MAKE) -C opm-core-build clean
 	$(MAKE) -C opm-grid-build clean
+	$(MAKE) -C ewoms-build clean
 	$(MAKE) -C opm-simulators-build clean
 	$(MAKE) -C opm-upscaling-build clean
 	$(MAKE) -C ResInsight-build clean

@@ -41,6 +41,7 @@ opm-material \
 opm-output \
 opm-core \
 opm-grid \
+ewoms \
 opm-simulators \
 opm-upscaling \
 ResInsight"
@@ -51,4 +52,5 @@ git_origin_base="git@github.com:babrodtk"
 build_configurations="\
 Release \
 Debug \
-Profile"
+Profile \
+MPI"
